@@ -1,0 +1,59 @@
+<!doctype html>
+{% load static %}
+
+<html>
+<head>
+    <title>{% block title %}{% endblock title %} - Idego CRM</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Bootstrap and font awesome CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap-4.0.0/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.css' %}">
+    <!-- Bootstrap JS and JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>    <script src="{% static 'bootstrap-4.0.0/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap-4.0.0/js/bootstrap.min.js' %}"></script>
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/crm.css' %}">
+
+    {% block extra_js %}{% endblock extra_js %}
+
+
+</head>
+
+<body>
+<header>
+    <div class="navbar navbar-dark bg-dark">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <div class="p2">
+                <h1>Idego CRM</h1>
+            </div>
+            <div class="p-2 d-flex flex-column flex-md-row justify-content-between">
+                {% if request.user.is_authenticated %}
+                <div class="p-2">
+                    <a href="{% url 'companies_list_views' %}"> <i class="fa fa-building" aria-hidden="true"></i>Companies </a>
+                </div>
+                <div class="p-2">
+                    <a href="{% url 'users_list_views' %}"> <i class="fa fa-users" aria-hidden="true"></i>Users </a>
+                </div>
+
+                <div class="p-2">
+                    <a href="{% url 'logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout </a>
+                </div>
+                {% else %}
+                <div>
+                    Please, <a href="{% url 'login' %}"> login </a> or <a href="{% url 'signup' %}"> sign up </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+    {% block content %}{% endblock content %}
+
+</div>
+</body>
+</html>

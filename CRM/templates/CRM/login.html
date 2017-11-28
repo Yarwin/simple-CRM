@@ -1,0 +1,18 @@
+{% extends 'CRM/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h2>Login</h2>
+  <form action="/login/?next=/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+      Login
+    </button>
+  </form>
+
+  <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+</div>
+{% endblock %}
