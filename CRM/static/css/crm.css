@@ -28,14 +28,16 @@ nav a, nav a:hover{
 	color: #2bad30;
 }
 
-.header-overlay-background {
+.overlay-background {
 	background: rgba(255, 255, 255, 0.33);
-	min-width:100%;
+	min-width:100vh;
 	min-height: 100vh;
 }
 
 .fill{
-	min-height: 100vh;
+	min-height: 90vh;
+	min-width:100vh;
+
 	background-size:cover;
 	background: center ;
 	z-index: 0;
@@ -50,7 +52,7 @@ nav a, nav a:hover{
 
 }
 
-header .jumbotron {
+.jumbotron {
 	height: auto;
 }
 
