@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.gis import forms
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView, FormView, DeleteView, UpdateView
@@ -39,8 +40,6 @@ class CompaniesListView(LoginRequiredMixin, ListView, FormView):
     form_class = NewCompanyForm
     success_url = '/companies'
 
-
-
     def get_queryset(self):
         return Company.objects.all()
 
@@ -55,7 +54,10 @@ class CompanyUpdate(LoginRequiredMixin, UpdateView):
     permission_denied_message = "You don't have an acess to edit companies"
 
     model = Company
-    fields = ['name']
+    fields = ['name', 'subtitle', 'notes']
+    widgets = {
+        'notes': forms.Textarea(attrs={'rows': 4, 'cols': 22}),
+    }
     template_name = "CRM/edit-company.html"
 
     def get_success_url(self):
@@ -81,7 +83,6 @@ class UsersListView(LoginRequiredMixin, ListView):
     template_name = "CRM/users.html"
 
     def get_queryset(self):
-        """Return the last five published questions."""
         return User.objects.order_by('is_active').reverse()
 
 
