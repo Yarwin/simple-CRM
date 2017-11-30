@@ -9,10 +9,6 @@ from .forms import NewCompanyForm
 from .models import Company
 
 
-def index(request):
-    return render(request, 'CRM/home.html')
-
-
 def signup(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -29,7 +25,7 @@ def signup(request):
             return redirect('/')
     else:
         form = UserCreationForm()
-    return render(request, 'CRM/signup.html', {'form': form})
+    return render(request, 'CRM/auth/signup.html', {'form': form})
 
 
 class CompaniesListView(LoginRequiredMixin, ListView, FormView):

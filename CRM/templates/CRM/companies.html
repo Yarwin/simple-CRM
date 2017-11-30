@@ -7,11 +7,11 @@ Companies
 {% block content %}
 
 {% include 'CRM/add-company.html' %}
-{% include 'CRM/general-modal.html' %}
+{% include 'CRM/utils/general-modal.html' %}
 
 <div class="col-md-10 col-md-offset-1 ">
 
-    <div>
+    <div class="mt-4">
         <div class="row mb-2">
             <div class="col-md-6 mr-auto text-md-left text-center">
                 <h3 class="panel-title">Companies</h3>
@@ -29,55 +29,42 @@ Companies
         </div>
     </div>
 
-    <div class="justify-content-center">
-        <table class="table table-striped table-responsive-md">
+    {% for company in object_list %}
+    <div class="card col-md-3 mt-4 cut-corners">
+        <div class="card-body">
+            <h4 class="card-title">{{ company.name }}</h4>
+            <h6 class="card-subtitle mt-2 mb-2 text-muted">{{ company.subtitle }}</h6>
+            <p class="card-text mt-2" style="min-width: 44vh;">{{ company.notes }}</p>
+            <div class="d-flex justify-content-between mt-5">
+                <div>
+                    <a class="btn btn-info showGeneralModal"
+                       data-toggle="modal"
+                       data-target="#generalModal"
+                       data-form="{% url 'edit_company' company.id %}"
+                       title="edit"
 
-            <thead class="thead-dark ">
-            <tr>
-                <th class="w-75">Name</th>
-                <th class="w-25 text-center"><em class="fa fa-cog"></em></th>
-            </tr>
-            </thead>
-
-            <tbody>
-            {% for company in object_list %}
-            <tr>
-                <td class="w-75">{{ company.name }}</td>
-                <td align="center" class="w-25">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <a class="btn btn-info showGeneralModal"
-                               data-toggle="modal"
-                               data-target="#generalModal"
-                               data-form="{% url 'edit_company' company.id %}"
-                               title="edit"
-
-                            >
-                                <em class="fa fa-pencil"></em>
-                            </a>
-                        </div>
-                        <div>
-                            <a class="btn btn-danger showGeneralModal"
-                               data-toggle="modal"
-                               data-target="#generalModal"
-                               data-form="{% url 'delete_company' company.id %}"
-                               title="delete"
-                            >
-                                <em class="fa fa-trash"></em>
-                            </a>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                No companies yet.
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                    >
+                        <em class="fa fa-pencil"></em>
+                    </a>
+                </div>
+                <div>
+                    <a class="btn btn-danger showGeneralModal"
+                       data-toggle="modal"
+                       data-target="#generalModal"
+                       data-form="{% url 'delete_company' company.id %}"
+                       title="delete"
+                    >
+                        <em class="fa fa-trash"></em>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+    {% empty %}
+    <h4 class="text-center mt-4">No companies yet</h4>
+
+    {% endfor %}
+
+
 </div>
-
-
 {% endblock %}

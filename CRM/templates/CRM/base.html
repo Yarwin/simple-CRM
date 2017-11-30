@@ -18,42 +18,37 @@
     <link rel="stylesheet" href="{% static 'css/crm.css' %}">
 
     {% block extra_js %}{% endblock extra_js %}
-
-
 </head>
 
 <body>
-<header>
-    <div class="navbar navbar-dark bg-dark">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <div class="p2">
-                <h1>Idego CRM</h1>
-            </div>
-            <div class="p-2 d-flex flex-column flex-md-row justify-content-between">
-                {% if request.user.is_authenticated %}
-                <div class="p-2">
-                    <a href="{% url 'companies_list_views' %}"> <i class="fa fa-building" aria-hidden="true"></i>Companies </a>
-                </div>
-                <div class="p-2">
-                    <a href="{% url 'users_list_views' %}"> <i class="fa fa-users" aria-hidden="true"></i>Users </a>
-                </div>
-
-                <div class="p-2">
-                    <a href="{% url 'logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout </a>
-                </div>
-                {% else %}
-                <div>
-                    Please, <a href="{% url 'login' %}"> login </a> or <a href="{% url 'signup' %}"> sign up </a>
-                </div>
-                {% endif %}
-            </div>
-        </div>
+<nav class="navbar navbar-fixed sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <a href="{% url 'home' %}" class="navbar-brand h1">Idego CRM</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-lg-auto">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item mt-2 mt-lg-0 mr-lg-4">
+                <a href="{% url 'companies_list_views' %}"> <i class="fa fa-building" aria-hidden="true"></i>Companies </a>
+            </li>
+            <li class="nav-item mt-2 mt-lg-0 mr-lg-4">
+                <a href="{% url 'users_list_views' %}"> <i class="fa fa-users" aria-hidden="true"></i>Users </a>
+            </li>
+            <li class="nav-item mt-2 mt-lg-0 mr-lg-4">
+                <a href="{% url 'logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout </a>
+            </li>
+            {% else %}
+            <li class="nav-item mt-2 mt-lg-0 mr-lg-4">
+                Please, <a href="{% url 'login' %}"> login </a> or <a href="{% url 'signup' %}"> sign up </a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
-</header>
+</nav>
 
-<div class="container mt-5">
+<div class="container">
     {% block content %}{% endblock content %}
-
 </div>
 </body>
 </html>

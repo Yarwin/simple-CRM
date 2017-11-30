@@ -5,7 +5,7 @@
 {% block content %}
 <div class="content">
     <div class="form-edit">
-        <form action="/companies/edit/{{ object.id }}" method="post">
+        <form action="/companies/edit/{{ object.id }}" method="post" class="text-center">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">

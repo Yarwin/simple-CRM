@@ -4,8 +4,8 @@
 
 {% block content %}
 <div class="content">
-  <h2>Sign up</h2>
-  <form action="signup/" method="post">
+  <h2 class="text-center">Sign up</h2>
+  <form action="signup/" method="post" class="text-center">
     {% csrf_token %}
     {% for field in form %}
     <p>
@@ -15,7 +15,7 @@
       <small style="color: grey">{{ field.help_text | safe }}</small>
       {% endif %}
       {% for error in field.errors %}
-    <p style="color: red">{{ error | safe }}</p>
+    <p style="color: red" class="text-center">{{ error | safe }}</p>
     {% endfor %}
     </p>
     {% endfor %}

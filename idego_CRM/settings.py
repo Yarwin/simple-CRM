@@ -26,7 +26,8 @@ SECRET_KEY = '@3$5444_r3o$2!q-y$z-il)42s7gqv=%zx343-hjgp(13b=eiw'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'yarvin.pythonanywhere.com'
+    'yarvin.pythonanywhere.com',
+    '127.0.0.1'
 ]
 
 

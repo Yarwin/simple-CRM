@@ -16,13 +16,14 @@
 <script>
     $(document).ready(function() {
         $('.showGeneralModal').click(function (event) {
+            event.preventDefault();
             var url = $(this).data("form");
-            $('#generalModal').on('show.bs.modal', function (e) {
-                $.get(url, function (data) {
-                    var div = $('.content', $(data));
-                    $('#modal-content').html(div);
-                });
+            $.get(url, function (data) {
+                var div = $('.content', $(data));
+                console.log(data);
+                $('#modal-content').html(div);
             });
+            $('#myModal').modal('show')
         });
 
     });

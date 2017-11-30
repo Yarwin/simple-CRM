@@ -2,19 +2,20 @@ from django.conf.urls import url
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
 
 from . import views
 
 auth_urls = [
     url(r'^signup/$', views.signup, name='signup'),
-    url(r'^login/$', auth_views.login, {'template_name': 'CRM/login.html', 'redirect_authenticated_user': True}, name='login'),
+    url(r'^login/$', auth_views.login, {'template_name': 'CRM/auth/login.html', 'redirect_authenticated_user': True}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
 
 ]
 
 app_urls = [
     url(r'^$',
-        views.index,
+        TemplateView.as_view(template_name='CRM/home.html'),
         name='home'),
     url(r'^companies/$',
         views.CompaniesListView.as_view(),

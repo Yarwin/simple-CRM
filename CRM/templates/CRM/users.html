@@ -6,11 +6,10 @@ Users
 {% endblock %}
 
 {% block content %}
-{% include 'CRM/general-modal.html' %}
+{% include 'CRM/utils/general-modal.html' %}
 
 
-<div class="col-md-12">
-
+<div class="container mt-4">
     <div>
         <div class="row mb-2">
             <div class="col-md-6 mr-auto text-md-left text-center">
@@ -18,65 +17,47 @@ Users
             </div>
         </div>
     </div>
-    <table class="table table-striped table-responsive-md">
-        <thead class="thead-dark">
-        <tr>
-            <th>id</th>
-            <th>Username</th>
-            <th>Joined</th>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Last login</th>
-            <th>Active</th>
-            <th>Staff</th>
-            {% if request.user.is_staff %}
-            <th class="text-center"><em class="fa fa-cog"></em></th>
+
+    {% for user in object_list %}
+    <div class="card col-md-3 mt-4 cut-corners">
+        <div class="card-body">
+
+            <h4 class="card-title">{{ user.username }}</h4>
+
+            <h6 class="card-subtitle mt-2 mb-2 text-muted">ID: {{ user.id }}</h6>
+
+            <p><b>Date joined</b>: {{ user.date_joined }}</p>
+
+            {% if user.email %}
+            <p><b>Email</b>: {{ user.email }}</p>
             {% endif %}
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in object_list %}
-        <tr>
-            <td> {{ user.id }}</td>
-            <td> {{ user.username }}</td>
-            <td> {{ user.date_joined }}</td>
-            <td> {{ user.email }}</td>
-            <td> {{ user.first_name }} {{ user.last_name }}</td>
-            <td> {{ user.last_login }}</td>
-            <td class="text-center">
+
+            {% if user.first_name and user.last_name %}
+            <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+            {% endif %}
+
+            <p><b>Last seen</b>: {{ user.last_login }}</p>
+            <p>
+                <b>Is user active</b>:
                 {% if user.is_active %}
                 <i class="fa fa-check-circle check-circle green" aria-hidden="true"></i>
                 {% else %}
                 <i class="fa fa-times-circle check-circle red" aria-hidden="true"></i>
 
                 {% endif %}
-            </td>
-            <td class="text-center">
+            </p>
+            <p>
+                <b>Is user staff member</b>:
                 {% if user.is_staff %}
-                <i class="fa fa-check-circle check-circle green" aria-hidden="true"></i>
+                <i class="fa fa-check-circle check-circle green ml-2" aria-hidden="true"></i>
                 {% else %}
-                <i class="fa fa-times-circle check-circle red" aria-hidden="true"></i>
+                <i class="fa fa-times-circle check-circle red ml-2" aria-hidden="true"></i>
                 {% endif %}
-            </td>
-            {% if request.user.is_staff %}
-            <td class="text-center">
-                <a class="btn btn-info showGeneralModal"
-                   data-toggle="modal"
-                   data-target="#generalModal"
-                   data-form="{% url 'edit_user' user.id %}"
-                   title="edit"
+            </p>
+        </div>
+    </div>
+    {% endfor %}
 
-                >
-                    <em class="fa fa-pencil"></em>
-                </a>
-            </td>
-            {% endif %}
-
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 </div>
-
 
 {% endblock %}
