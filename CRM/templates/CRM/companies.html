@@ -9,62 +9,61 @@ Companies
 {% include 'CRM/add-company.html' %}
 {% include 'CRM/utils/general-modal.html' %}
 
-<div class="col-md-10 col-md-offset-1 ">
+<div class="container mt-4">
 
-    <div class="mt-4">
-        <div class="row mb-2">
-            <div class="col-md-6 mr-auto text-md-left text-center">
-                <h3 class="panel-title">Companies</h3>
-            </div>
-            <div class="col-md-6 ml-auto text-md-right text-center">
-                <button
-                        type="button"
-                        class="btn btn-sm btn-primary btn-create"
-                        data-toggle="modal"
-                        data-target="#add-new-company"
-                >
-                    Add company
-                </button>
-            </div>
+    <div class="row mb-2 justify-content-center">
+        <div class="col-md-6 mr-auto text-md-left text-center">
+            <h3 class="panel-title">Companies</h3>
+        </div>
+        <div class="col-md-6 ml-auto text-md-right text-center">
+            <button
+                    type="button"
+                    class="btn btn-sm btn-primary btn-create"
+                    data-toggle="modal"
+                    data-target="#add-new-company"
+            >
+                Add company
+            </button>
         </div>
     </div>
+    <div>
 
-    {% for company in object_list %}
-    <div class="card col-md-3 mt-4 cut-corners">
-        <div class="card-body">
-            <h4 class="card-title">{{ company.name }}</h4>
-            <h6 class="card-subtitle mt-2 mb-2 text-muted">{{ company.subtitle }}</h6>
-            <p class="card-text mt-2" style="min-width: 44vh;">{{ company.notes }}</p>
-            <div class="d-flex justify-content-between mt-5">
-                <div>
-                    <a class="btn btn-info showGeneralModal"
-                       data-toggle="modal"
-                       data-target="#generalModal"
-                       data-form="{% url 'edit_company' company.id %}"
-                       title="edit"
+        {% for company in object_list %}
+        <div class="card col-md-3 mt-4 ml-4 mr-4 cut-corners">
+            <div class="card-body mt-3 mb-3">
+                <h4 class="card-title">{{ company.name }}</h4>
+                <h6 class="card-subtitle mt-2 mb-2 text-muted">{{ company.subtitle }}</h6>
+                <p class="card-text mt-2" style="min-width: 44vh;">{{ company.notes }}</p>
+                <div class="d-flex justify-content-between mt-5">
+                    <div class="">
+                        <a class="btn btn-info showGeneralModal"
+                           data-toggle="modal"
+                           data-target="#generalModal"
+                           data-form="{% url 'edit_company' company.id %}"
+                           title="edit"
 
-                    >
-                        <em class="fa fa-pencil"></em>
-                    </a>
-                </div>
-                <div>
-                    <a class="btn btn-danger showGeneralModal"
-                       data-toggle="modal"
-                       data-target="#generalModal"
-                       data-form="{% url 'delete_company' company.id %}"
-                       title="delete"
-                    >
-                        <em class="fa fa-trash"></em>
-                    </a>
+                        >
+                            <em class="fa fa-pencil"></em>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="btn btn-danger showGeneralModal"
+                           data-toggle="modal"
+                           data-target="#generalModal"
+                           data-form="{% url 'delete_company' company.id %}"
+                           title="delete"
+                        >
+                            <em class="fa fa-trash"></em>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        {% empty %}
+        <h4 class="text-center mt-4">No companies yet</h4>
+
+        {% endfor %}
+
     </div>
-    {% empty %}
-    <h4 class="text-center mt-4">No companies yet</h4>
-
-    {% endfor %}
-
-
 </div>
 {% endblock %}

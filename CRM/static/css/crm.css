@@ -1,7 +1,7 @@
 body {
 	color: #333333;
 	text-shadow: 0 .02rem .1rem rgba(0,0,0,.2);
-	background-color: #f9f9f9;
+	background-color: #e7e7e7;
 }
 
 nav {
@@ -49,7 +49,7 @@ nav a, nav a:hover{
 	background: rgba(255, 255, 255, 0.6);
 	position: relative;
 	clip-path: polygon(0 5vh, 5vh 0, 100% 0, 100% calc(100% - 5vh), calc(100% - 5vh) 100%, 0 100%);
-
+    border: none;
 }
 
 .jumbotron {

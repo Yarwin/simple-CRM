@@ -10,17 +10,13 @@ Users
 
 
 <div class="container mt-4">
-    <div>
-        <div class="row mb-2">
-            <div class="col-md-6 mr-auto text-md-left text-center">
-                <h3 class="panel-title">Users</h3>
-            </div>
-        </div>
+    <div class="row mb-2 justify-content-center">
+        <h3 class="">Users</h3>
     </div>
-
+<div>
     {% for user in object_list %}
-    <div class="card col-md-3 mt-4 cut-corners">
-        <div class="card-body">
+    <div class="card col-md-3 mt-4 ml-4 mr-4 cut-corners">
+        <div class="card-body mt-3 mb-3">
 
             <h4 class="card-title">{{ user.username }}</h4>
 
@@ -57,7 +53,7 @@ Users
         </div>
     </div>
     {% endfor %}
-
+</div>
 </div>
 
 {% endblock %}
