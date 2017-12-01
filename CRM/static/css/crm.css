@@ -30,7 +30,7 @@ nav a, nav a:hover{
 
 .overlay-background {
 	background: rgba(255, 255, 255, 0.33);
-	min-width:100vh;
+	min-width:100%;
 	min-height: 100vh;
 }
 
